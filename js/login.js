@@ -5,6 +5,8 @@ function tryLogin() {
 
     // corremos la validacion de bootstrap y si da correcto vamos al inicio XD
     if(form.checkValidity()) {
+        // guardamos en almacenamiento local el nombre de usuario para usarlo en el inicio
+        window.localStorage.setItem("user", document.getElementById("userName").value);
         window.location.href = "inicio.html";
     }
 
