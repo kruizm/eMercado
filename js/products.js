@@ -38,6 +38,12 @@ function sortProducts(criteria, array){
     return result;
 }
 
+function setProductID(prodId) {
+    // guardar product ID para poder recuperarlo desde product-info
+    window.localStorage.setItem("prodID", prodId);
+    window.location.href = "product-info.html";
+}
+
 function showProductsList(){
 
     let htmlContentToAppend = "";
@@ -50,7 +56,7 @@ function showProductsList(){
 
                 // creamos el elemento de html para cada producto
             htmlContentToAppend += `
-            <div class="list-group-item list-group-item-action cursor-active">
+            <div class="list-group-item list-group-item-action cursor-active" onclick="setProductID(${product.id})">
                 <div class="row">
                     <div class="col-3">
                         <img src="${product.image}" alt="${product.description}" class="img-thumbnail">
