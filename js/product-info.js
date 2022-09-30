@@ -16,6 +16,12 @@ function estrellas(cantidad) {
     return html_estrellas;
 }
 
+function setProductID(prodId) {
+    // guardar product ID nuevo y recargar
+    window.localStorage.setItem("prodID", prodId);
+    window.location.reload();
+}
+
 document.addEventListener("DOMContentLoaded", function() {
     (getJSONData(PRODUCT_INFO_URL + window.localStorage.getItem("prodID") + ".json")
         .then(r => {
@@ -38,6 +44,14 @@ document.addEventListener("DOMContentLoaded", function() {
                 // crear imagenes por cada imagen que tenemos (usamos columnas para que autoajuste tamaño)
                 imagenes.innerHTML += `<div class="col"><img src="${img}" class="mw-100"></div>`;
                 console.log(imagenes.innerHTML);
+            }
+
+            let relacionados = document.getElementById("related-products");
+            relacionados.innerHTML = "";
+            
+            // crear links a relacionados
+            for(let related of r.data.relatedProducts) {
+                relacionados.innerHTML += `<div class="col cursor-active border" onclick="setProductID(${related.id})"><img src="${related.image}" class="mw-100 mt-2"><br/><p class="text-center">${related.name}</p></div>`
             }
         })
         // ir a buscar comentarios de los usuarios

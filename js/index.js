@@ -14,3 +14,8 @@ document.addEventListener("DOMContentLoaded", function(){
     // insertamos el nombre de usuario en la barra superior
     document.getElementById("userNameBlock").innerText = window.localStorage.getItem("user");
 });
+
+function logout() {
+    window.localStorage.removeItem("user");
+    window.location.href = "index.html";
+}

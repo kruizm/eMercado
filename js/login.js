@@ -1,3 +1,9 @@
+document.addEventListener("DOMContentLoaded", function() {
+    if(window.localStorage.getItem("user") !== null) {
+        window.location.href = "inicio.html";
+    }
+});
+
 function tryLogin() {
 
     // buscamos el formulario
